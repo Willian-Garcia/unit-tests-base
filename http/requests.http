@@ -37,7 +37,7 @@ Content-Type: application/json
 }
 
 ### Atualiza Contact
-PUT http://localhost:3001/contacts/4
+PUT http://localhost:3001/contacts/1
 Authorization: Bearer {{login.response.body.data.token}}
 Content-Type: application/json
 
@@ -47,6 +47,6 @@ Content-Type: application/json
 }
 
 ### Remove Contact
-DELETE http://localhost:3001/contacts/4
+DELETE http://localhost:3001/contacts/1
 Authorization: Bearer {{login.response.body.data.token}}
 

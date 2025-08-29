@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: postgres-test
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: bdaula
+    ports:
+      - "5433:5432"
+    tmpfs: # banco em memória (sem persistência)
+      - /var/lib/postgresql/data
+    volumes:
+      - ./src/configs/comandos.sql:/docker-entrypoint-initdb.d/comandos.sql:ro
+    networks:
+      - test-network
+
+  redis:
+    image: redis:8-alpine
+    container_name: redis-test
+    restart: always
+    tmpfs:
+      - /data
+    ports:
+      - "6380:6379"
+    networks:
+      - test-network
+
+networks:
+  test-network:
+    driver: bridge
